@@ -1,0 +1,11 @@
+autopep8
+fastapi
+matplotlib
+numpy
+pandas
+requests
+scikit-learn
+statsmodels
+top2vec
+top2vec[sentence_encoders]
+uvicorn[standard]
