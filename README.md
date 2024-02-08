@@ -22,9 +22,8 @@ http://qwone.com/~jason/20Newsgroups/20news-bydate.tar.gz
 - top2vec
   - python top2vec library makes this a very hands-off approach i.e. easy to implement
   - performs some preprocessing for us (stop words, lemmatization...)
-  - automatically finds number of topics 
+  - automatically decides on number of topics --> hard to say if this is desirable
   - maybe less commonly used than LDA?
-  - possibly less options to tweak than LDA e.g. what if we disagree with number of topics?
 
 # Validation
 - k-fold/leave-p-out cross-validation
@@ -32,7 +31,7 @@ http://qwone.com/~jason/20Newsgroups/20news-bydate.tar.gz
 
 # Interation
 - FastAPI endpoints
-  - data upload
+  - raw data CRUD (create, read, update, delete)
   - training
   - validation
   - topic view
@@ -47,6 +46,14 @@ A requirement for this project is that the code does not exceed 1000 lines, as s
 - pull_data.py: functions related to data entry e.g. to read data from CSV or JSON files, maybe pull data from an API etc...
 - validation.py: model validation code i.e. cross validation, topic coherence
 
+# Future Scope
+- perform a literature review of methodologies relevant to topic modelling
+  - why is LDA popular?
+  - are there better modelling techniques for this dataset?
+  - are emails considered short-text classification i.e. do we want to perform less preprocessing?
+- determine best hyperparameters using grid search
+- ensemble modelling: use multiple modelling techniques (or the same technique on separate data) to better estimate topics e.g. if 9/10 models suggest a document belongs to a topic with similar popular words, they're likely to be correct --> does this apply to LDA?
+- learn more about top2vec --> 
 
 # Resources
 - [top2vec](https://www.youtube.com/watch?v=bEaxKSQ4Av8)

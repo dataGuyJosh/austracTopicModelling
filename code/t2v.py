@@ -2,7 +2,7 @@ from top2vec import Top2Vec
 
 # read documents
 # this subset represents the first 9000 documents in the corpus, restricted due to memory constraints
-with open('20newsgroups_9000.txt', 'r') as file:
+with open('data/20newsgroups_9000.txt', 'r') as file:
     # Read the content of the file
     content = file.read()
     # Split the content into a list using the delimiter "|~|~|"
