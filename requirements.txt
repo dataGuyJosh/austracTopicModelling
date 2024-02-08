@@ -1,11 +1,18 @@
-autopep8
-fastapi
-matplotlib
-numpy
-pandas
-requests
-scikit-learn
-statsmodels
+# lda
+nltk
+gensim
+spacy
+pyLDAvis
+
+# t2v
 top2vec
 top2vec[sentence_encoders]
+
+# fastapi
+fastapi
 uvicorn[standard]
+
+# misc
+autopep8
+numpy
+pandas

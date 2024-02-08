@@ -17,6 +17,7 @@ import pyLDAvis
 import pyLDAvis.gensim
 
 
+
 # read documents
 # this subset represents the first 9000 documents in the corpus, restricted due to memory constraints
 with open('20newsgroups_9000.txt', 'r') as file:
@@ -37,8 +38,6 @@ nltk.download('stopwords')
 stopwords = stopwords.words('english')
 
 # allowed_pos_tags: part-of-speech i.e. do we allow nouns, verbs, adjectives etc...
-
-
 def lemmatization(docs, allowed_pos_tags=['NOUN', 'ADJ', 'VERB', 'ADV']):
     nlp = spacy.load('en_core_web_sm', disable=['parser', 'ner'])
     new_docs = []
@@ -58,29 +57,11 @@ def lemmatization(docs, allowed_pos_tags=['NOUN', 'ADJ', 'VERB', 'ADV']):
 # Convert a document into a list of tokens. This lowercases, tokenizes and de-accents
 def gensim_preprocessing(docs):
     return [gensim.utils.simple_preprocess(d, deacc=True) for d in docs]
-
+    new_docs = []
+    for d in docs:
+        new_docs.append(gensim.simple_preprocess(d, deacc=True))
 
 lem_docs = lemmatization(docs[:500])
 print(lem_docs[0][0:90])
-doc_words = gensim_preprocessing(lem_docs)
-print(doc_words[0][0:20])
-
-# generate bag-of-words for each document i.e. word frequency lists for each document
-id2word = corpora.Dictionary(doc_words)
-corpus = [id2word.doc2bow(d) for d in doc_words]
-
-'''# LDA Topic Model'''
-lda_model = gensim.models.ldamodel.LdaModel(
-    corpus=corpus,
-    id2word=id2word,
-    num_topics=30,
-    random_state=100,
-    update_every=1,
-    chunksize=100,
-    passes=10,
-    alpha="auto"
-)
-
-'''# Model Visualization'''
-vis = pyLDAvis.gensim.prepare(lda_model, corpus, id2word, mds='mmds', R=30)
-pyLDAvis.show(vis, local=False)
+result = gensim_preprocessing(lem_docs)
+print(result[0][0:90])

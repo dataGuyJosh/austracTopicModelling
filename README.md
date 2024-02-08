@@ -21,7 +21,7 @@ http://qwone.com/~jason/20Newsgroups/20news-bydate.tar.gz
   - topic needs to be inferred based on output i.e. LDA won't necessarily output a "topic name"
 - top2vec
   - python top2vec library makes this a very hands-off approach i.e. easy to implement
-  - performs some preprocessing for us (stop words, llemmatization...)
+  - performs some preprocessing for us (stop words, lemmatization...)
   - automatically finds number of topics 
   - maybe less commonly used than LDA?
   - possibly less options to tweak than LDA e.g. what if we disagree with number of topics?
