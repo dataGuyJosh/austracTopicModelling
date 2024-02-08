@@ -8,6 +8,8 @@ pyLDAvis
 top2vec
 top2vec[sentence_encoders]
 
+## Unused requirements, consider removing
+
 # fastapi
 fastapi
 uvicorn[standard]
