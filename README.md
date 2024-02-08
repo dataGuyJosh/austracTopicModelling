@@ -44,7 +44,7 @@ A requirement for this project is that the code does not exceed 1000 lines, as s
 - modelling.py: LDA or top2vec modelling code
 - preprocessing.py: functions related to preprocessing steps
 - pull_data.py: functions related to data entry e.g. to read data from CSV or JSON files, maybe pull data from an API etc...
-- validation.py: model validation code i.e. cross validation, topic coherence
+- validation.py: k-fold or leave-p-out cross validation --> is this possible with LDA?
 
 # Future Scope
 - perform a literature review of methodologies relevant to topic modelling
@@ -53,6 +53,7 @@ A requirement for this project is that the code does not exceed 1000 lines, as s
   - are emails considered short-text classification i.e. do we want to perform less preprocessing?
 - determine best hyperparameters using grid search
 - ensemble modelling: use multiple modelling techniques (or the same technique on separate data) to better estimate topics e.g. if 9/10 models suggest a document belongs to a topic with similar popular words, they're likely to be correct --> does this apply to LDA?
+- learn about other model validation techniques e.g. topic coherence
 - learn more about top2vec --> 
 
 # Resources

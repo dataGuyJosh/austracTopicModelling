@@ -1,34 +1,105 @@
-# lemmatization
-# from nltk.corpus import stopwords
-import spacy
-# import nltk
-# nltk.download('stopwords')
+'''
+# ETL
+The dataset is a single text file containing 9000 emails with various topics
+- raw data was presented in a folder structure
+- merged first 9k documents into a single text file for source control convenience
+- topics include atheism, computer graphics, cars, motorcycles, cryptography, medicine, politics etc...
+Read email contents into a python list
+'''
 
-# Basic ETL
-# read documents
-# this subset represents the first 9000 documents in the corpus, restricted due to memory constraints
-with open('data/20newsgroups_9000.txt', 'r') as file:
-    # Read file contents, splitting into a list using the delimiter "|~|~|"
-    docs = file.read().split('|~|~|')
+# num_docs: the number of documents to read, 0 indicates to read all docs
+# regex: restrict files using regex on file name e.g. only read .txt files
 
-# print(docs[6000][:250])
 
-# preprocessing
-# reduce words to their simplest form, (not stemming as the result is still an actual word)
-def lemmatization(docs, allowed_pos_tags=['NOUN', 'ADJ', 'VERB', 'ADV']):
-    nlp = spacy.load('en_core_web_sm', disable=['parser', 'ner'])
-    # remove email jargon, some of these are covered by stop words but shown here for completeness
-    email_stop_words = ['From','Subject','Organization', 'Line']
+def read_documents(file_path, num_docs=0, regex=''):
+    # read documents with optional parameters
+    pass
+
+
+'''# Preprocessing'''
+def word_processing(docs):
     new_docs = []
-    for d in docs:
-        doc = nlp(d)
-        new_doc = [w.lemma_ for w in doc if (not w.is_stop) and (w.pos_ in allowed_pos_tags) and (w.text not in email_stop_words)]
-        new_docs.append(" ".join(new_doc))
+    '''
+    We have a list of files, now to clean the data into a form usable by our chosen model (LDA)
+    - removal of
+      - stopwords
+        - incorporate a generic stopword list
+        - additionally remove email-specific stopwords e.g. "subject"
+      - punctuation
+      - character accents e.g. Ü --> U
+    - lemmatization
+      - LDA presents as a list of the most "salient" (common?) words in each topic.
+        This makes lemmatization preferable to stemming as we produce real words
+        making topic interpretation slightly easier.
+    - restrict words based on POS e.g. preserve nouns, adjectives, verbs and adverbs
+      but discard pronouns, prepositions, conjunctions and interjections
+    '''
     return new_docs
 
-lem_docs = lemmatization(docs[:100])
 
-print(lem_docs[0][:500])
-# modelling
+def n_grams(docs, n=3):
+    '''
+    Each document is now effectively a list simplified, lowercase words.
+    Model performance will likely see improvement through the addition of n-grams.
+    '''
+    new_docs = []
+    for d in docs:
+        # generate n-grams up to n i.e. if n = 3, find bigrams and trigrams
+        # add to document d's word list
+        pass
+    return new_docs
 
-# visualization
+
+def tf_idf(docs, threshold):
+  new_docs = []
+  '''
+  Term Frequency - Inverse Document Frequency
+  - terms with high TF-IDF scores occur frequently within a document 
+    but relatively rarely in the rest of the corpus
+  - we assume that a high TF-IDF score indicates a given term is important to the context of the document
+  - set a threshold score at which we accept/deny terms for being used
+  - filter documents to only include terms which pass this threshold
+  '''
+  return new_docs
+
+def get_bow(docs):
+    '''
+    https://radimrehurek.com/gensim/models/ldamodel.html
+    The library we're using for LDA requires several data-related arguments
+    - corpus: a 2D list of tuples where the first value indicates a term (as an index)
+      and the second value indicates the frequency of that term in the document
+    - id2word: a list of terms mapping to the indexes in corpus
+    '''
+    return [id2word, corpus]
+
+def train_lda_model(id2word, corpus):
+    '''
+    At this point we have our data-based inputs, define hyper parameters and run the model.
+    
+    It may also be pertinent to implement a grid search here to find the best set of hyper parameters,
+    however a prerequisite to this is implementing model quality metrics
+    - Perplexity: low values indicate good performance on unseen data
+    - Topic Coherence: terms in a topic are similar
+    - Topic Diversity: topics are distinct from each other
+    '''
+    pass
+
+def visualize_lda_model(model, id2word, corpus):
+    '''
+    This LDA visualization tool works with gensim models (and was shamelessly stolen from a tutorial, see resources in README.md)
+    https://pyldavis.readthedocs.io/en/latest/modules/API.html
+    vis = pyLDAvis.gensim.prepare(...)
+    pyLDAvis.show(vis)
+    '''
+
+if __name__ == "__main__":
+    # read documents
+    docs = read_documents('data/20newsgroups_9000.txt')
+    # perform term preprocessing
+    docs_words = tf_idf(n_grams(word_processing(docs)), 0.03)
+    # generate model inputs
+    id2word, corpus = get_bow(docs_words)
+    # train model
+    model = train_lda_model(id2word, corpus)
+    # visualize
+    visualize_lda_model(model, id2word, corpus)

@@ -1,12 +1,10 @@
 import nltk
-import numpy as np
-import glob
 
 # modelling
 import gensim
 import gensim.corpora as corpora
 from gensim.utils import simple_preprocess
-from gensim.models import CoherenceModel, TfidfModel
+from gensim.models import TfidfModel
 
 
 # lemmatization
@@ -17,7 +15,7 @@ from nltk.corpus import stopwords
 import pyLDAvis
 import pyLDAvis.gensim
 
-
+'''# ETL'''
 # read documents
 # this subset represents the first 9000 documents in the corpus, restricted due to memory constraints
 with open('data/20newsgroups_9000.txt', 'r') as file:
@@ -115,6 +113,7 @@ for i in range(0, len(corpus)):
 # # generate bag-of-words for each document i.e. word frequency lists for each document
 # id2word = corpora.Dictionary(docs_words)
 # corpus = [id2word.doc2bow(d) for d in docs_words]
+
 
 '''# LDA Topic Model'''
 # given that we're working with 9k documents with no shuffling; we're unlikely to see 20 distinct topics
