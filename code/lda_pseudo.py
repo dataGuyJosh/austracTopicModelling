@@ -75,7 +75,7 @@ def get_bow(docs):
 def train_lda_model(id2word, corpus):
     '''
     At this point we have our data-based inputs, define hyper parameters and run the model.
-    
+
     It may also be pertinent to implement a grid search here to find the best set of hyper parameters,
     however a prerequisite to this is implementing model quality metrics
     - Perplexity: low values indicate good performance on unseen data
@@ -91,6 +91,7 @@ def visualize_lda_model(model, id2word, corpus):
     vis = pyLDAvis.gensim.prepare(...)
     pyLDAvis.show(vis)
     '''
+    pass
 
 if __name__ == "__main__":
     # read documents

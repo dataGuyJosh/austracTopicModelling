@@ -54,7 +54,8 @@ A requirement for this project is that the code does not exceed 1000 lines, as s
 - determine best hyperparameters using grid search
 - ensemble modelling: use multiple modelling techniques (or the same technique on separate data) to better estimate topics e.g. if 9/10 models suggest a document belongs to a topic with similar popular words, they're likely to be correct --> does this apply to LDA?
 - learn about other model validation techniques e.g. topic coherence
-- learn more about top2vec --> 
+- learn more about top2vec: there's a bunch of parameters I haven't explored here and likely also better visualization tools
+- source control: if this were to become a larger project, development branches should be used rather than pushing code to master (main) every time.
 
 # Resources
 - [top2vec](https://www.youtube.com/watch?v=bEaxKSQ4Av8)
