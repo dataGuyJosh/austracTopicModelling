@@ -41,7 +41,7 @@ stopwords = stopwords.words('english')
 def lemmatization(docs, allowed_pos_tags=['NOUN', 'ADJ', 'VERB', 'ADV']):
     nlp = spacy.load('en_core_web_sm', disable=['parser', 'ner'])
     # remove email jargon, some of these are covered by stop words but shown here for completeness
-    email_stop_words = ['From','Subject','Organization', 'Line']
+    email_stop_words = ['From','Subject','Organization', 'Lines']
     new_docs = []
     for d in docs:
         doc = nlp(d)

@@ -15,6 +15,7 @@ http://qwone.com/~jason/20Newsgroups/20news-bydate.tar.gz
 - TF-IDF i.e. removal of terms used frequently throughout the corpus
 
 # Modelling Techniques
+- find best hyper-parameters (if relevant) using grid search
 - LDA
   - conventional industry standard
   - scales well with corpus size
@@ -29,7 +30,7 @@ http://qwone.com/~jason/20Newsgroups/20news-bydate.tar.gz
 - k-fold/leave-p-out cross-validation
 - topic coherence (how semantically similar are high scoring words within a given topic)
 
-# Interation
+# Interactions
 - FastAPI endpoints
   - raw data CRUD (create, read, update, delete)
   - training
@@ -40,7 +41,7 @@ http://qwone.com/~jason/20Newsgroups/20news-bydate.tar.gz
 
 # Code Separation
 A requirement for this project is that the code does not exceed 1000 lines, as such for simplicity I'll use a single python file, however ordinarily it would be broken down by feature.
-- api.py: FastAPI code related to interacting with the app, this would also contain `__main__`
+- api.py: FastAPI code related to interacting with the app
 - modelling.py: LDA or top2vec modelling code
 - preprocessing.py: functions related to preprocessing steps
 - pull_data.py: functions related to data entry e.g. to read data from CSV or JSON files, maybe pull data from an API etc...
@@ -51,11 +52,11 @@ A requirement for this project is that the code does not exceed 1000 lines, as s
   - why is LDA popular?
   - are there better modelling techniques for this dataset?
   - are emails considered short-text classification i.e. do we want to perform less preprocessing?
-- determine best hyperparameters using grid search
 - ensemble modelling: use multiple modelling techniques (or the same technique on separate data) to better estimate topics e.g. if 9/10 models suggest a document belongs to a topic with similar popular words, they're likely to be correct --> does this apply to LDA?
-- learn about other model validation techniques e.g. topic coherence
+  - is ensemble equivalent to bootstrap aggregation?
+- learn about model validation techniques e.g. topic coherence
 - learn more about top2vec: there's a bunch of parameters I haven't explored here and likely also better visualization tools
-- source control: if this were to become a larger project, development branches should be used rather than pushing code to master (main) every time.
+- source control: if this were to become a larger project, development branches should be used rather than pushing code to master (main) every time, especially when working with other developers
 
 # Resources
 - [top2vec](https://www.youtube.com/watch?v=bEaxKSQ4Av8)
